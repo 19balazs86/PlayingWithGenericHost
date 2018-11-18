@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "PlayingWithGenericHost": {
+      "commandName": "Project",
+      "commandLineArgs": "--console",
+      "environmentVariables": {
+        "environment": "Development"
+      }
+    }
+  }
+}

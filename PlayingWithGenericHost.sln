@@ -3,7 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayingWithGenericHost", "PlayingWithGenericHost\PlayingWithGenericHost.csproj", "{F4248591-A32F-494D-8060-470A05D264D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlayingWithGenericHost", "PlayingWithGenericHost\PlayingWithGenericHost.csproj", "{F4248591-A32F-494D-8060-470A05D264D8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1A16A2CE-DC48-4FE2-959D-3E2DF77165DE}"
+	ProjectSection(SolutionItems) = preProject
+		PublishAsWinService.bat = PublishAsWinService.bat
+		README.md = README.md
+		WinServiceCommands.bat = WinServiceCommands.bat
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
