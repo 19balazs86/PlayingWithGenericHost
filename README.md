@@ -1,11 +1,11 @@
 # Playing with GenericHost
 
 This small .NET Core application is an example for using the GenericHost in a console application and running background task as a Windows Service.
-Note: if you use docker, you can run it without the win service stuff.
+Note: if you use docker, you can run it without the windows service stuff.
 
-The HostBulder is similar like in ASP.NET Core the WebHostBuilder, which allows us to configuring services, using dependency injection container, logging... but the HostBuilder do not process HTTP requests.
+The HostBulder is similar like in ASP.NET Core the WebHostBuilder, which allows us to configuring services, using [dependency injection](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-2.1 "dependency injection"), configure and create [HttpClient](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/http-requests?view=aspnetcore-2.1 "HttpClient"), [logging](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/logging/?view=aspnetcore-2.1 "logging") + [Serilog](https://github.com/serilog/serilog-extensions-hosting "Serilog")... but the HostBuilder do not process HTTP requests.
 
-**My resources**
+**Thanks for the resources:**
 - Microsoft: [.NET Generic Host](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-2.1 ".NET Generic Host")
 - Microsoft: [Background tasks with hosted services in ASP.NET Core](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-2.1 "Background tasks with hosted services in ASP.NET Core")
 - Microsoft: [Host ASP.NET Core in a Windows Service](https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/windows-service?view=aspnetcore-2.1 "Microsoft: Host ASP.NET Core in a Windows Service")

@@ -17,7 +17,7 @@ namespace PlayingWithGenericHost
       IHostBuilder hostBuilder = new HostBuilder()
         .ConfigureAppConfiguration((hostContext, config) =>
         {
-          // Init: Configuration
+          // --> Init: Configuration
           config.AddJsonFile("appsettings.json", optional: true);
           config.AddJsonFile($"appsettings.{hostContext.HostingEnvironment.EnvironmentName}.json", optional: true);
           config.AddEnvironmentVariables();
@@ -33,6 +33,7 @@ namespace PlayingWithGenericHost
           //services.AddOptions();
           //services.Configure<FileWriterConfig>(hostContext.Configuration.GetSection("FileWriter"));
 
+          // --> Prepare configurations.
           FileWriterConfig fwConfig = new FileWriterConfig();
           hostContext.Configuration.GetSection("FileWriter").Bind(fwConfig);
 
@@ -40,6 +41,9 @@ namespace PlayingWithGenericHost
 
           // --> Add: HostedService
           services.AddHostedService<FileWriterService>();
+
+          // --> Install-Package Microsoft.Extensions.Http
+          //services.AddHttpClient(...);
         })
         //.ConfigureLogging((hostingContext, logging) =>
         //{
