@@ -1,6 +1,7 @@
 # Playing with GenericHost
 
 This small .NET Core application is an example for using the GenericHost in a console application and running background task as a Windows Service.
+Note: if you use docker, you can run it without the win service stuff.
 
 The HostBulder is similar like in ASP.NET Core the WebHostBuilder, which allows us to configuring services, using dependency injection container, logging... but the HostBuilder do not process HTTP requests.
 

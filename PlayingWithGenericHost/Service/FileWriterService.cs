@@ -25,7 +25,7 @@ namespace PlayingWithGenericHost.Service
     {
       _logger.LogInformation("Starting");
 
-      _timer = new Timer(x => doWork(), null, TimeSpan.Zero, TimeSpan.FromSeconds(_config.EverySeconds));
+      _timer = new Timer(heartbeat, null, TimeSpan.Zero, TimeSpan.FromSeconds(_config.EverySeconds));
 
       return Task.CompletedTask;
     }
@@ -46,21 +46,29 @@ namespace PlayingWithGenericHost.Service
       _timer?.Dispose();
     }
 
-    private void doWork()
+    private void heartbeat(object state)
+    {
+      // Or: new Timer(x => _ = doWork(), ...
+      // https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md#timer-callbacks
+      _ = doWork(); // Discard the result
+    }
+
+    private async Task doWork()
     {
       _logger.LogInformation("DoWork.");
 
-      string path = _config.WriteToPath;
-
-      if (File.Exists(path))
+      try
       {
-        using (StreamWriter sw = File.AppendText(path))
-          sw.WriteLine(DateTime.Now.ToString("HH:mm:ss"));
+        using (FileStream fs = File.Open(_config.WriteToPath, FileMode.Append, FileAccess.Write))
+        using (StreamWriter sw = new StreamWriter(fs))
+        {
+          await sw.WriteLineAsync(DateTime.Now.ToString("HH:mm:ss"));
+          await sw.FlushAsync();
+        }
       }
-      else
+      catch (Exception ex)
       {
-        using (StreamWriter sw = File.CreateText(path))
-          sw.WriteLine(DateTime.Now.ToString("HH:mm:ss"));
+        _logger.LogError(ex, "Error during the work.");
       }
     }
   }
