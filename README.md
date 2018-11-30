@@ -5,8 +5,7 @@ Note: if you use docker, you can run it without the windows service stuff.
 
 The HostBulder is similar like in ASP.NET Core the WebHostBuilder, which allows us to configuring services, using [dependency injection](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-2.1 "dependency injection"), configure and create [HttpClient](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/http-requests?view=aspnetcore-2.1 "HttpClient"), [logging](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/logging/?view=aspnetcore-2.1 "logging") + [Serilog](https://github.com/serilog/serilog-extensions-hosting "Serilog")... but the HostBuilder do not process HTTP requests.
 
-In the following example, you can find a deatiled explanation. How to write background tasks, which is running all the time or just running periodically (Threading.Timer, [Quartz Scheduler](https://www.quartz-scheduler.net/ "Quartz Scheduler")).
-[TutorialDocs: The Background Tasks Based On Generic Host In .NET Core](https://www.tutorialdocs.com/article/dotnet-generic-host.html "TutorialDocs: The Background Tasks Based On Generic Host In .NET Core")
+[TutorialDocs: The Background Tasks Based On Generic Host In .NET Core](https://www.tutorialdocs.com/article/dotnet-generic-host.html "TutorialDocs: The Background Tasks Based On Generic Host In .NET Core"), here you can find a deatiled explanation how to write background tasks, which is running all the time or just running periodically (Threading.Timer, [Quartz Scheduler](https://www.quartz-scheduler.net/ "Quartz Scheduler")).
 
 **Other resources:**
 - Microsoft: [.NET Generic Host](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-2.1 ".NET Generic Host")
