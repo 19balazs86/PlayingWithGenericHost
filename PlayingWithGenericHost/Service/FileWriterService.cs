@@ -23,7 +23,7 @@ namespace PlayingWithGenericHost.Service
 
     public Task StartAsync(CancellationToken cancellationToken)
     {
-      _logger.LogInformation("Starting");
+      _logger.LogInformation("FileWriterService is starting.");
 
       _timer = new Timer(heartbeat, null, TimeSpan.Zero, TimeSpan.FromSeconds(_config.EverySeconds));
 
@@ -32,7 +32,7 @@ namespace PlayingWithGenericHost.Service
 
     public Task StopAsync(CancellationToken cancellationToken)
     {
-      _logger.LogInformation("Stopping.");
+      _logger.LogInformation("FileWriterService is stopping.");
 
       _timer?.Change(Timeout.Infinite, 0);
 
@@ -55,7 +55,7 @@ namespace PlayingWithGenericHost.Service
 
     private async Task doWork()
     {
-      _logger.LogInformation("DoWork.");
+      _logger.LogInformation("FileWriterService is working.");
 
       try
       {

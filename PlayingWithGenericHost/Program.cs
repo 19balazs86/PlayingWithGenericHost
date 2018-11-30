@@ -15,18 +15,31 @@ namespace PlayingWithGenericHost
     public static async Task Main(string[] args)
     {
       IHostBuilder hostBuilder = new HostBuilder()
+        .ConfigureHostConfiguration(config =>
+        {
+          //if (args != null)
+          //  config.AddCommandLine(args);
+        })
         .ConfigureAppConfiguration((hostContext, config) =>
         {
-          // --> Init: Configuration
+          // --> Init: Configuration.
           config.AddJsonFile("appsettings.json", optional: true);
           config.AddJsonFile($"appsettings.{hostContext.HostingEnvironment.EnvironmentName}.json", optional: true);
           config.AddEnvironmentVariables();
           config.AddCommandLine(args.Where(arg => arg != "--console").ToArray());
 
-          // --> Create: Serilog
+          // --> Create: Serilog.
           Log.Logger = new LoggerConfiguration()
             .ReadFrom.Configuration(config.Build())
             .CreateLogger();
+        })
+        .ConfigureLogging((hostingContext, logging) =>
+        {
+          //logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
+          //logging.AddConsole();
+          //logging.AddDebug();
+
+          // But: .UseSerilog()
         })
         .ConfigureServices((hostContext, services) =>
         {
@@ -39,18 +52,14 @@ namespace PlayingWithGenericHost
 
           services.AddSingleton(fwConfig);
 
-          // --> Add: HostedService
+          // --> Add: HostedService.
           services.AddHostedService<FileWriterService>();
+          //services.AddHostedService<PrinterService>(); // UsePrinterService()
 
           // --> Install-Package Microsoft.Extensions.Http
           //services.AddHttpClient(...);
         })
-        //.ConfigureLogging((hostingContext, logging) =>
-        //{
-        //  logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
-        //  logging.AddConsole();
-        //  logging.AddDebug();
-        //})
+        .UsePrinterService() // Add: HostedService
         .UseSerilog();
 
       bool isService = !(Debugger.IsAttached || args.Contains("--console"));
@@ -60,8 +69,15 @@ namespace PlayingWithGenericHost
       else
         await hostBuilder.RunConsoleAsync();
 
-      //await host.RunAsync();
-      //return host.RunAsync();
+      ////Start and wait for shutdown.
+      //IHost host = hostBuilder.Build();
+
+      //using (host)
+      //{
+      //  await host.StartAsync();
+
+      //  await host.WaitForShutdownAsync();
+      //}
     }
   }
 }
