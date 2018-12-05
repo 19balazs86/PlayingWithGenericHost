@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "PlayingWithGenericHost": {
+    "RunMe": {
       "commandName": "Project",
       "commandLineArgs": "--console",
       "environmentVariables": {
