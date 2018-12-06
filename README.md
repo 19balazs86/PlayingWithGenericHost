@@ -7,6 +7,10 @@ The HostBulder is similar like in ASP.NET Core the WebHostBuilder, which allows 
 
 [TutorialDocs: The Background Tasks Based On Generic Host In .NET Core](https://www.tutorialdocs.com/article/dotnet-generic-host.html "TutorialDocs: The Background Tasks Based On Generic Host In .NET Core"), here you can find a deatiled explanation how to write background tasks, which is running all the time or just running periodically (Threading.Timer, [Quartz Scheduler](https://www.quartz-scheduler.net/ "Quartz Scheduler"), or just using [Hangfire](https://www.hangfire.io "Hangfire")).
 
+Quick test to run as a WinService:
+1. Publish with the PublushAsWinService.pubxml (publish it to folder c:\svc)
+2. Run the WinServiceCommands.bat file (create, start, stop, delete functions)
+
 **Other resources:**
 - Microsoft: [.NET Generic Host](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-2.2 ".NET Generic Host")
 - Microsoft: [Background tasks with hosted services in ASP.NET Core](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-2.2 "Background tasks with hosted services in ASP.NET Core")
