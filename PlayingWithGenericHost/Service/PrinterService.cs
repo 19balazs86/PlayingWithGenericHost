@@ -8,11 +8,18 @@ namespace PlayingWithGenericHost.Service
 {
   public class PrinterService : BackgroundService
   {
+    public override Task StartAsync(CancellationToken cancellationToken)
+    {
+      Log.Information("Printer is started.");
+
+      return base.StartAsync(cancellationToken);
+    }
+
     public override Task StopAsync(CancellationToken cancellationToken)
     {
       Log.Information("Printer is stopped.");
 
-      return Task.CompletedTask;
+      return base.StopAsync(cancellationToken);
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
