@@ -27,11 +27,6 @@ namespace PlayingWithGenericHost
           config.AddJsonFile($"appsettings.{hostContext.HostingEnvironment.EnvironmentName}.json", optional: true);
           config.AddEnvironmentVariables();
           config.AddCommandLine(args.Where(arg => arg != "--console").ToArray());
-
-          // --> Create: Serilog.
-          Log.Logger = new LoggerConfiguration()
-            .ReadFrom.Configuration(config.Build())
-            .CreateLogger();
         })
         .ConfigureLogging((hostingContext, logging) =>
         {
@@ -60,7 +55,7 @@ namespace PlayingWithGenericHost
           //services.AddHttpClient(...);
         })
         .UsePrinterService() // Add: HostedService
-        .UseSerilog();
+        .UseSerilog(configureLogger);
 
       bool isService = !(Debugger.IsAttached || args.Contains("--console"));
 
@@ -79,5 +74,8 @@ namespace PlayingWithGenericHost
       //  await host.WaitForShutdownAsync();
       //}
     }
+
+    private static void configureLogger(HostBuilderContext context, LoggerConfiguration configuration)
+      => configuration.ReadFrom.Configuration(context.Configuration);
   }
 }
