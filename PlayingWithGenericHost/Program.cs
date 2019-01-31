@@ -76,6 +76,10 @@ namespace PlayingWithGenericHost
     }
 
     private static void configureLogger(HostBuilderContext context, LoggerConfiguration configuration)
-      => configuration.ReadFrom.Configuration(context.Configuration);
+    {
+      configuration
+        .MinimumLevel.Debug()
+        .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {Message}{NewLine}{Exception}");
+    }
   }
 }
