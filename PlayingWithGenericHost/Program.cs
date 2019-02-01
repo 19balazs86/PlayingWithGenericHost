@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using PlayingWithGenericHost.Service;
 using Serilog;
 
@@ -15,54 +16,19 @@ namespace PlayingWithGenericHost
     public static async Task Main(string[] args)
     {
       IHostBuilder hostBuilder = new HostBuilder()
-        .ConfigureHostConfiguration(config =>
-        {
-          //if (args != null)
-          //  config.AddCommandLine(args);
-        })
-        .ConfigureAppConfiguration((hostContext, config) =>
-        {
-          // --> Init: Configuration.
-          config.AddJsonFile("appsettings.json", optional: true);
-          config.AddJsonFile($"appsettings.{hostContext.HostingEnvironment.EnvironmentName}.json", optional: true);
-          config.AddEnvironmentVariables();
-          config.AddCommandLine(args.Where(arg => arg != "--console").ToArray());
-        })
-        .ConfigureLogging((hostingContext, logging) =>
-        {
-          //logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
-          //logging.AddConsole();
-          //logging.AddDebug();
-
-          // But: .UseSerilog()
-        })
-        .ConfigureServices((hostContext, services) =>
-        {
-          //services.AddOptions();
-          //services.Configure<FileWriterConfig>(hostContext.Configuration.GetSection("FileWriter"));
-
-          // --> Prepare configurations.
-          FileWriterConfig fwConfig = new FileWriterConfig();
-          hostContext.Configuration.GetSection("FileWriter").Bind(fwConfig);
-
-          services.AddSingleton(fwConfig);
-
-          // --> Add: HostedService.
-          services.AddHostedService<FileWriterService>();
-          //services.AddHostedService<PrinterService>(); // UsePrinterService()
-
-          // --> Install-Package Microsoft.Extensions.Http
-          //services.AddHttpClient(...);
-        })
+        .ConfigureHostConfiguration(configureHostConfiguration)
+        .ConfigureAppConfiguration(configureAppConfiguration)
+        .ConfigureLogging(configureLogging)
+        .ConfigureServices(configureServices)
         .UsePrinterService() // Add: HostedService
-        .UseSerilog(configureLogger);
+        .UseSerilog(configureSerilog);
 
       bool isService = !(Debugger.IsAttached || args.Contains("--console"));
 
       if (isService)
         await hostBuilder.RunAsServiceAsync();
       else
-        await hostBuilder.RunConsoleAsync();
+        await hostBuilder.RunConsoleAsync(); // Enables console support, waits for Ctrl+C ...
 
       ////Start and wait for shutdown.
       //IHost host = hostBuilder.Build();
@@ -75,7 +41,51 @@ namespace PlayingWithGenericHost
       //}
     }
 
-    private static void configureLogger(HostBuilderContext context, LoggerConfiguration configuration)
+    private static void configureServices(HostBuilderContext hostContext, IServiceCollection services)
+    {
+      IConfiguration configuration = hostContext.Configuration;
+
+      //services.AddOptions();
+      //services.Configure<FileWriterConfig>(configuration.GetSection("FileWriter"));
+
+      // --> Prepare configurations.
+      FileWriterConfig fwConfig = new FileWriterConfig();
+      configuration.GetSection("FileWriter").Bind(fwConfig);
+
+      services.AddSingleton(fwConfig);
+
+      // --> Add: HostedService.
+      services.AddHostedService<FileWriterService>();
+      //services.AddHostedService<PrinterService>(); // UsePrinterService()
+
+      // --> Install-Package Microsoft.Extensions.Http
+      //services.AddHttpClient(...);
+    }
+
+    private static void configureAppConfiguration(HostBuilderContext hostContext, IConfigurationBuilder configBuilder)
+    {
+      configBuilder.AddJsonFile("appsettings.json", optional: true);
+      configBuilder.AddJsonFile($"appsettings.{hostContext.HostingEnvironment.EnvironmentName}.json", optional: true);
+      configBuilder.AddEnvironmentVariables();
+      //configBuilder.AddCommandLine(args.Where(arg => arg != "--console").ToArray());
+    }
+
+    private static void configureHostConfiguration(IConfigurationBuilder configBuilder)
+    {
+      //if (args != null)
+      //  configBuilder.AddCommandLine(args);
+    }
+
+    private static void configureLogging(HostBuilderContext hostContext, ILoggingBuilder logging)
+    {
+      //logging.AddConfiguration(hostContext.Configuration.GetSection("Logging"));
+      //logging.AddConsole();
+      //logging.AddDebug();
+
+      // But: .UseSerilog()
+    }
+
+    private static void configureSerilog(HostBuilderContext context, LoggerConfiguration configuration)
     {
       configuration
         .MinimumLevel.Debug()
