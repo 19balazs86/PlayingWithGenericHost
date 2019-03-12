@@ -66,7 +66,7 @@ namespace PlayingWithGenericHost
     {
       configBuilder.AddJsonFile("appsettings.json", optional: true);
       configBuilder.AddJsonFile($"appsettings.{hostContext.HostingEnvironment.EnvironmentName}.json", optional: true);
-      configBuilder.AddEnvironmentVariables();
+      //configBuilder.AddEnvironmentVariables();
       //configBuilder.AddCommandLine(args.Where(arg => arg != "--console").ToArray());
     }
 
