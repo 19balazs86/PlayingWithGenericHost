@@ -5,8 +5,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using PlayingWithGenericHost.Quartz;
 using PlayingWithGenericHost.Service;
+using Quartz;
+using Quartz.Impl;
+using Quartz.Spi;
 using Serilog;
+using Serilog.Events;
 
 namespace PlayingWithGenericHost
 {
@@ -56,10 +61,19 @@ namespace PlayingWithGenericHost
 
       // --> Add: HostedService.
       services.AddHostedService<FileWriterService>();
+      services.AddHostedService<QuartzHostedService>();
       //services.AddHostedService<PrinterService>(); // UsePrinterService()
 
       // --> Install-Package Microsoft.Extensions.Http
       //services.AddHttpClient(...);
+
+      // --> Add Quartz services
+      services.AddSingleton<IJobFactory, SingletonJobFactory>();
+      services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();
+
+      // --> Add our job
+      services.AddSingleton<HelloWorldJob>();
+      services.AddSingleton<IJobSchedule>(new JobSchedule<HelloWorldJob>("0/5 * * * * ?")); // Run every 5 seconds
     }
 
     private static void configureAppConfiguration(HostBuilderContext hostContext, IConfigurationBuilder configBuilder)
@@ -89,6 +103,7 @@ namespace PlayingWithGenericHost
     {
       configuration
         .MinimumLevel.Debug()
+        .MinimumLevel.Override("Quartz", LogEventLevel.Warning)
         .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {Message}{NewLine}{Exception}");
     }
   }
