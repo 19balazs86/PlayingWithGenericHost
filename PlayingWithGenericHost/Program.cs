@@ -85,7 +85,7 @@ namespace PlayingWithGenericHost
       // But: .UseSerilog()
     }
 
-    private static void configureSerilog(HostBuilderContext context, LoggerConfiguration configuration)
+    private static void configureSerilog(HostBuilderContext hostContext, LoggerConfiguration configuration)
     {
       configuration
         .MinimumLevel.Debug()

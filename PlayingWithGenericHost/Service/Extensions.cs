@@ -6,9 +6,6 @@ namespace PlayingWithGenericHost.Service
   public static class Extensions
   {
     public static IHostBuilder UsePrinterService(this IHostBuilder hostBuilder)
-    {
-      return hostBuilder.ConfigureServices(services
-        => services.AddHostedService<PrinterService>());
-    }
+      => hostBuilder.ConfigureServices(services => services.AddHostedService<PrinterService>());
   }
 }

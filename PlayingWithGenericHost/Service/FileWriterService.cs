@@ -17,8 +17,6 @@ namespace PlayingWithGenericHost.Service
     {
       _config = config;
       _logger = logger;
-      // This is not necessary for Serilog. Just a demonstration, that the UseSerilog extension method is working.
-      // You can use Log.Information without ILogger.
     }
 
     public Task StartAsync(CancellationToken cancellationToken)
@@ -41,7 +39,7 @@ namespace PlayingWithGenericHost.Service
 
     public void Dispose()
     {
-      _logger.LogInformation("Dispose.");
+      _logger.LogInformation("FileWriterService: Dispose.");
 
       _timer?.Dispose();
     }
@@ -59,7 +57,7 @@ namespace PlayingWithGenericHost.Service
 
       try
       {
-        using (FileStream fs = File.Open(_config.WriteToPath, FileMode.Append, FileAccess.Write))
+        using (FileStream fs   = File.Open(_config.WriteToPath, FileMode.Append, FileAccess.Write))
         using (StreamWriter sw = new StreamWriter(fs))
         {
           await sw.WriteLineAsync(DateTime.Now.ToString("HH:mm:ss"));
@@ -68,7 +66,7 @@ namespace PlayingWithGenericHost.Service
       }
       catch (Exception ex)
       {
-        _logger.LogError(ex, "Error during the work.");
+        _logger.LogError(ex, "An error occurred during writing the file.");
       }
     }
   }
