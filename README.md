@@ -24,3 +24,6 @@ Note: if you use docker, you can run it without the windows service stuff.
 - Steve Gordon: [Running a .NET Core Generic Host App as a Windows Service](https://www.stevejgordon.co.uk/running-net-core-generic-host-applications-as-a-windows-service "Running a .NET Core Generic Host App as a Windows Service").
 - Glenn Condron presentation: [APIs and Microservices in ASP.NET Core](https://youtu.be/dUdGcogYkss?t=1404 "APIs and Microservices in ASP.NET Core Today and Tomorrow").
 - Andrew Lock: [Creating a Quartz.NET hosted service with ASP.NET Core](https://andrewlock.net/creating-a-quartz-net-hosted-service-with-asp-net-core/ "Creating a Quartz.NET hosted service with ASP.NET Core").
+
+##### Off-topic
+- [Blog post](https://medium.com/cheranga/creating-and-scheduling-a-windows-service-using-topshelf-and-quartz-in-net-core-aae68b8390c "Blog post") about creating and scheduling a windows service using [TopShelf](http://topshelf-project.com/ "TopShelf") and Quartz in .NET Core.
