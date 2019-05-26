@@ -5,14 +5,15 @@ Note: if you use docker, you can run it without the windows service stuff.
 
 #### What is the HostBulder?
 
-HostBulder is similar like in ASP.NET Core the WebHostBuilder, which allows us to configuring services, using [dependency injection](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-2.2 "dependency injection"), configure and create [HttpClient](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/http-requests?view=aspnetcore-2.2 "HttpClient"), [logging](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/logging/?view=aspnetcore-2.2 "logging") + [Serilog](https://github.com/serilog/serilog-extensions-hosting "Serilog")... but the HostBuilder do not process HTTP requests.
+- HostBuilder is a lightweight version of the WebHostBuilder because it does not process HTTP requests.
+- HostBuilder similarly like the WebHostBuilder, allows us to configure services, using [dependency injection](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-2.2 "dependency injection"), [HttpClientFactory](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/http-requests?view=aspnetcore-2.2 "HttpClientFactory"), [logging](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/logging/?view=aspnetcore-2.2 "logging") + [Serilog](https://github.com/serilog/serilog-extensions-hosting "Serilog") and so on.
 
-#### To run this aplication as a WinService
+#### Run this application as a WinService
 
 1. Publish the application with the predefined PublishAsWinService.pubxml (c:\svc)
 2. Run the WinServiceCommands.bat file (create, start, stop, delete functions)
 
-#### Other resources
+#### Resources
 
 - [TutorialDocs: The Background Tasks Based On Generic Host In .NET Core](https://www.tutorialdocs.com/article/dotnet-generic-host.html "TutorialDocs: The Background Tasks Based On Generic Host In .NET Core"), here you can find a deatiled explanation how to write background tasks, which is running all the time or just running periodically (Threading.Timer, [Quartz Scheduler](https://www.quartz-scheduler.net/ "Quartz Scheduler"), or using [Hangfire](https://www.hangfire.io "Hangfire")).
 - Microsoft: [.NET Generic Host](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-2.2 ".NET Generic Host").
