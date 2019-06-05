@@ -5,14 +5,14 @@ using Quartz.Spi;
 
 namespace PlayingWithGenericHost.Quartz
 {
-  public class SingletonJobFactory : IJobFactory
+  public class QuartzJobFactory : IJobFactory
   {
     private readonly IServiceProvider _serviceProvider;
-    public SingletonJobFactory(IServiceProvider serviceProvider)
+    public QuartzJobFactory(IServiceProvider serviceProvider)
       => _serviceProvider = serviceProvider;
 
     public IJob NewJob(TriggerFiredBundle bundle, IScheduler scheduler)
-      => _serviceProvider.GetRequiredService(bundle.JobDetail.JobType) as IJob;
+      => _serviceProvider.GetRequiredService<QuartzJobRunner>();
 
     public void ReturnJob(IJob job) { }
   }

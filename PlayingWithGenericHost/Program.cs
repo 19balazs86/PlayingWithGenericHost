@@ -68,10 +68,11 @@ namespace PlayingWithGenericHost
       //services.AddHttpClient(...);
 
       // --> Add Quartz services
-      services.AddSingleton<IJobFactory, SingletonJobFactory>();
+      services.AddSingleton<IJobFactory, QuartzJobFactory>();
       services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();
 
       // --> Add our job
+      services.AddSingleton<QuartzJobRunner>();
       services.AddSingleton<HelloWorldJob>();
       services.AddSingleton<IJobSchedule>(new JobSchedule<HelloWorldJob>("0/5 * * * * ?")); // Run every 5 seconds
     }
