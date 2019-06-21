@@ -31,3 +31,4 @@ Note: if you use docker, you can run it without the windows service stuff.
 
 ##### Off-topic
 - [Blog post](https://medium.com/cheranga/creating-and-scheduling-a-windows-service-using-topshelf-and-quartz-in-net-core-aae68b8390c "Blog post") about creating and scheduling a windows service using [TopShelf](http://topshelf-project.com/ "TopShelf") and Quartz in .NET Core.
+- [.NET Core 3 scheduled job with Worker Service](https://dev.to/jamesmh/building-a-net-core-scheduled-job-worker-service-376h ".NET Core 3 scheduled job with Worker Service") + [Coravel](https://github.com/jamesmh/coravel "Coravel").
