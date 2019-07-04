@@ -60,6 +60,7 @@ namespace PlayingWithGenericHost
       services.AddSingleton(fwConfig);
 
       // --> Add: HostedService.
+      // !! Stopping in reverse order of adding.
       services.AddHostedService<FileWriterService>();
       services.AddHostedService<QuartzHostedService>();
       //services.AddHostedService<PrinterService>(); // UsePrinterService()
