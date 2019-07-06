@@ -1,11 +1,11 @@
-sc create MyFileService binPath="c:\svc\PlayingWithGenericHost.exe"
+sc create MyWorkerService binPath="c:\svc\PlayingWithGenericHost.exe"
 pause
 
-sc START MyFileService
+sc START MyWorkerService
 pause
 
-sc STOP MyFileService
+sc STOP MyWorkerService
 pause
 
-sc DELETE MyFileService
+sc DELETE MyWorkerService
 pause

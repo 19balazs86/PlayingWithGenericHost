@@ -57,12 +57,11 @@ namespace PlayingWithGenericHost.Service
 
       try
       {
-        using (FileStream fs   = File.Open(_config.WriteToPath, FileMode.Append, FileAccess.Write))
-        using (StreamWriter sw = new StreamWriter(fs))
-        {
-          await sw.WriteLineAsync(DateTime.Now.ToString("HH:mm:ss"));
-          await sw.FlushAsync();
-        }
+        using FileStream fs   = File.Open(_config.WriteToPath, FileMode.Append, FileAccess.Write);
+        using StreamWriter sw = new StreamWriter(fs);
+
+        await sw.WriteLineAsync(DateTime.Now.ToString("HH:mm:ss"));
+        await sw.FlushAsync();
       }
       catch (Exception ex)
       {

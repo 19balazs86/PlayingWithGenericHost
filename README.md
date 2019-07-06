@@ -1,7 +1,5 @@
 # Playing with GenericHost
-
-This small .NET Core application is an example for using the GenericHost in a console application and running background task as a Windows Service.
-Note: if you use docker, you can run it without the windows service stuff.
+This console application is an example of using the GenericHost as known WorkerService (from .NET Core 3). Running background task as a Windows Service.
 
 #### What is the HostBulder?
 
@@ -21,14 +19,11 @@ Note: if you use docker, you can run it without the windows service stuff.
   - [Background tasks with hosted services in ASP.NET Core](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-2.2 "Background tasks with hosted services in ASP.NET Core").
   - [Host ASP.NET Core in a Windows Service](https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/windows-service?view=aspnetcore-2.2 "Microsoft: Host ASP.NET Core in a Windows Service").
 - .Net Tutorials: [Hosted Services In ASP.NET Core](https://dotnetcoretutorials.com/2019/01/13/hosted-services-in-asp-net-core "Hosted Services In ASP.NET Core").
-- Blog posts from Steve Gordon:
-  - [Using HostBuilder and the Generic Host in .NET Core](https://www.stevejgordon.co.uk/using-generic-host-in-dotnet-core-console-based-microservices "Using HostBuilder and the Generic Host in .NET Core").
-  - [Running a .NET Core Generic Host App as a Windows Service](https://www.stevejgordon.co.uk/running-net-core-generic-host-applications-as-a-windows-service "Running a .NET Core Generic Host App as a Windows Service").
-- Glenn Condron presentation: [APIs and Microservices in ASP.NET Core](https://youtu.be/dUdGcogYkss?t=1404 "APIs and Microservices in ASP.NET Core Today and Tomorrow").
+- Glenn Condron: [Community Standup - Takes Workers Everywhere](https://www.youtube.com/watch?v=5AEqA035o5I&feature=youtu.be&t=1709 "Community Standup - Takes Workers Everywhere") + Docker example.
 - Blog posts from Andrew Lock:
   - [Creating a Quartz.NET hosted service](https://andrewlock.net/creating-a-quartz-net-hosted-service-with-asp-net-core/ "Creating a Quartz.NET hosted service").
   - [Using scoped services inside a Quartz.NET hosted service](https://andrewlock.net/using-scoped-services-inside-a-quartz-net-hosted-service-with-asp-net-core/ "Using scoped services inside a Quartz.NET hosted service").
 
 ##### Off-topic
 - [Blog post](https://medium.com/cheranga/creating-and-scheduling-a-windows-service-using-topshelf-and-quartz-in-net-core-aae68b8390c "Blog post") about creating and scheduling a windows service using [TopShelf](http://topshelf-project.com/ "TopShelf") and Quartz in .NET Core.
-- [.NET Core 3 scheduled job with Worker Service](https://dev.to/jamesmh/building-a-net-core-scheduled-job-worker-service-376h ".NET Core 3 scheduled job with Worker Service") + [Coravel](https://github.com/jamesmh/coravel "Coravel").
+- [Scheduled job with Worker Service](https://dev.to/jamesmh/building-a-net-core-scheduled-job-worker-service-376h "Scheduled job with Worker Service") + [Coravel](https://github.com/jamesmh/coravel "Coravel").

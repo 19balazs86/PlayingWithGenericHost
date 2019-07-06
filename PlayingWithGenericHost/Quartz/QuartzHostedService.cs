@@ -43,7 +43,8 @@ namespace PlayingWithGenericHost.Quartz
       await _scheduler.Start(ct);
     }
 
-    public async Task StopAsync(CancellationToken ct) => await _scheduler?.Shutdown(ct);
+    public async Task StopAsync(CancellationToken ct)
+      => await _scheduler?.Shutdown(waitForJobsToComplete: true, ct);
 
     private static IJobDetail createJobDetail(Type jobType)
       => JobBuilder

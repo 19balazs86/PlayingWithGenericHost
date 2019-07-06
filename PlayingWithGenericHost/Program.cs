@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -17,10 +16,10 @@ namespace PlayingWithGenericHost
 {
   public class Program
   {
-    // To make it async: *.csproj add this line <LangVersion>latest</LangVersion>
-    public static async Task Main(string[] args)
+    public static void Main(string[] args)
     {
-      IHostBuilder hostBuilder = new HostBuilder()
+      IHostBuilder hostBuilder = Host
+        .CreateDefaultBuilder(/*args*/)
         .ConfigureHostConfiguration(configureHostConfiguration)
         .ConfigureAppConfiguration(configureAppConfiguration)
         .ConfigureLogging(configureLogging)
@@ -30,24 +29,14 @@ namespace PlayingWithGenericHost
 
       bool isService = !(Debugger.IsAttached || args.Contains("--console"));
 
-      if (isService)
-        await hostBuilder.RunAsServiceAsync();
-      else
-        await hostBuilder.RunConsoleAsync(); // Enables console support, waits for Ctrl+C ...
+      if (isService) hostBuilder.UseWindowsService();
 
-      ////Start and wait for shutdown.
-      //IHost host = hostBuilder.Build();
-
-      //using (host)
-      //{
-      //  await host.StartAsync();
-
-      //  await host.WaitForShutdownAsync();
-      //}
+      hostBuilder.Build().Run();
     }
 
     private static void configureServices(HostBuilderContext hostContext, IServiceCollection services)
     {
+      #region Configuration
       IConfiguration configuration = hostContext.Configuration;
 
       //services.AddOptions();
@@ -58,24 +47,28 @@ namespace PlayingWithGenericHost
       configuration.GetSection("FileWriter").Bind(fwConfig);
 
       services.AddSingleton(fwConfig);
+      #endregion
 
       // --> Add: HostedService.
       // !! Stopping in reverse order of adding.
       services.AddHostedService<FileWriterService>();
-      services.AddHostedService<QuartzHostedService>();
       //services.AddHostedService<PrinterService>(); // UsePrinterService()
 
       // --> Install-Package Microsoft.Extensions.Http
       //services.AddHttpClient(...);
 
+      #region Quartz
       // --> Add Quartz services
+      services.AddHostedService<QuartzHostedService>();
+
       services.AddSingleton<IJobFactory, QuartzJobFactory>();
       services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();
 
-      // --> Add our job
+      // --> Add Quartz jobs
       services.AddSingleton<QuartzJobRunner>();
       services.AddSingleton<HelloWorldJob>();
-      services.AddSingleton<IJobSchedule>(new JobSchedule<HelloWorldJob>("0/5 * * * * ?")); // Run every 5 seconds
+      services.AddSingleton<IJobSchedule>(new JobSchedule<HelloWorldJob>("*/5 * * * * ?")); // Run every 5 seconds
+      #endregion
     }
 
     private static void configureAppConfiguration(HostBuilderContext hostContext, IConfigurationBuilder configBuilder)
