@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -6,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using PlayingWithGenericHost.Quartz;
 using PlayingWithGenericHost.Service;
+using PlayingWithGenericHost.ThreadingChannels;
 using Quartz;
 using Quartz.Impl;
 using Quartz.Spi;
@@ -31,11 +33,22 @@ namespace PlayingWithGenericHost
 
       if (isService) hostBuilder.UseWindowsService();
 
-      hostBuilder.Build().Run();
+      try
+      {
+        hostBuilder.Build().Run();
+      }
+      catch (Exception ex)
+      {
+        // Can be TaskCanceledException, due to the HostOptions.ShutdownTimeout.
+        Console.WriteLine($"Program.Main error: '{ex.Message}'");
+      }
     }
 
     private static void configureServices(HostBuilderContext hostContext, IServiceCollection services)
     {
+      // Try to drain the channel.
+      services.Configure<HostOptions>(option => option.ShutdownTimeout = TimeSpan.FromSeconds(15));
+
       #region Configuration
       IConfiguration configuration = hostContext.Configuration;
 
@@ -68,6 +81,13 @@ namespace PlayingWithGenericHost
       services.AddSingleton<QuartzJobRunner>();
       services.AddSingleton<HelloWorldJob>();
       services.AddSingleton<IJobSchedule>(new JobSchedule<HelloWorldJob>("*/5 * * * * ?")); // Run every 5 seconds
+      #endregion
+
+      #region ThreadingChannels
+      services.AddSingleton<MessageChannel>();
+      services.AddHostedService<ChannelReaderService>();
+      services.AddHostedService<ChannelWriterService>();
+      // !!Stopping in reverse order of adding. We should stop the writer first.
       #endregion
     }
 
