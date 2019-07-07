@@ -1,6 +1,8 @@
 # Playing with GenericHost
 This console application is an example of using the GenericHost as known WorkerService (from .NET Core 3). Running background task as a Windows Service.
 
+[Separate branch](https://github.com/19balazs86/PlayingWithGenericHost/tree/netcoreapp2.2) with the .NET Core 2.2 version.
+
 #### What is the HostBulder?
 
 - HostBuilder is a lightweight version of the WebHostBuilder and it does not process HTTP requests.
@@ -10,6 +12,13 @@ This console application is an example of using the GenericHost as known WorkerS
 
 1. Publish the application with the predefined PublishAsWinService.pubxml (c:\svc)
 2. Run the WinServiceCommands.bat file (create, start, stop, delete functions)
+
+#### Examples
+
+- PrinterService: a simple example of using BackgroundService as a base class.
+- FileWriterService: a simple example of using IHostedService and a Timer in it.
+- Quartz: using the Quartz.NET to create background process timing with cron expression.
+- [System.Threading.Channels](https://docs.microsoft.com/en-us/dotnet/api/system.threading.channels?view=dotnet-plat-ext-3.0): leverage this library to create a bounded channel/in-memory queue. Using IAsyncEnumerable.
 
 #### Resources
 
@@ -23,6 +32,7 @@ This console application is an example of using the GenericHost as known WorkerS
 - Blog posts from Andrew Lock:
   - [Creating a Quartz.NET hosted service](https://andrewlock.net/creating-a-quartz-net-hosted-service-with-asp-net-core/).
   - [Using scoped services inside a Quartz.NET hosted service](https://andrewlock.net/using-scoped-services-inside-a-quartz-net-hosted-service-with-asp-net-core/).
+- Nicolas Portmann blog: [Exploring System.Threading.Channels](https://ndportmann.com/system-threading-channels/).
 
 ##### Off-topic
 - [Blog post](https://medium.com/cheranga/creating-and-scheduling-a-windows-service-using-topshelf-and-quartz-in-net-core-aae68b8390c) about creating and scheduling a windows service using [TopShelf](http://topshelf-project.com/) and Quartz in .NET Core.
