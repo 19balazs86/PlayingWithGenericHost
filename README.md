@@ -27,6 +27,7 @@ This console application is an example of using the GenericHost as known WorkerS
   - [.NET Generic Host](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-2.2).
   - [Background tasks with hosted services in ASP.NET Core](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-2.2).
   - [Host ASP.NET Core in a Windows Service](https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/windows-service?view=aspnetcore-2.2).
+- Telerik blog: [.NET Core 3 Background Services](https://www.telerik.com/blogs/.net-core-background-services).
 - .Net Tutorials: [Hosted Services In ASP.NET Core](https://dotnetcoretutorials.com/2019/01/13/hosted-services-in-asp-net-core).
 - Glenn Condron: [Community Standup - Takes Workers Everywhere](https://www.youtube.com/watch?v=5AEqA035o5I&feature=youtu.be&t=1709) + Docker example.
 - Blog posts from Andrew Lock:
