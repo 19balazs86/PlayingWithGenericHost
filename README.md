@@ -5,7 +5,7 @@ This console application is an example of using the `GenericHost` as known `Work
 
 #### What is the HostBulder?
 - `HostBuilder` is a lightweight version of the `WebHostBuilder` and it does not process HTTP requests.
-- `HostBuilder` similarly like the `WebHostBuilder`, allows to configure services, using [dependency injection](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-2.2), [HttpClientFactory](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/http-requests?view=aspnetcore-2.2), [logging](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/logging/?view=aspnetcore-2.2) + [Serilog](https://github.com/serilog/serilog-extensions-hosting) and so on.
+- `HostBuilder` similarly like the `WebHostBuilder`, allows to configure services, using [dependency injection](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-3.0), [HttpClientFactory](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/http-requests?view=aspnetcore-3.0), [logging](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/logging/?view=aspnetcore-3.0) + [Serilog](https://github.com/serilog/serilog-extensions-hosting) and so on.
 
 #### Run this application as a Windows Service
 1. Publish the application with the predefined PublishAsWinService.pubxml (c:\svc)
@@ -20,9 +20,9 @@ This console application is an example of using the `GenericHost` as known `Work
 #### Resources
 - TutorialDocs: [Background Tasks based on Generic Host in .NET Core](https://www.tutorialdocs.com/article/dotnet-generic-host.html), you can find a detailed explanation of how to write background tasks, which is running all the time or just running periodically (Threading.Timer, [Quartz Scheduler](https://www.quartz-scheduler.net/), or using [Hangfire](https://www.hangfire.io)).
 - Microsoft:
-  - [.NET Generic Host](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-2.2).
-  - [Background tasks with hosted services in ASP.NET Core](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-2.2).
-  - [Host ASP.NET Core in a Windows Service](https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/windows-service?view=aspnetcore-2.2).
+  - [.NET Generic Host](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.0).
+  - [Background tasks with hosted services in ASP.NET Core](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-3.0).
+  - [Host ASP.NET Core in a Windows Service](https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/windows-service?view=aspnetcore-3.0).
 - Telerik blog: [.NET Core 3 Background Services](https://www.telerik.com/blogs/.net-core-background-services).
 - .Net Tutorials: [Hosted Services In ASP.NET Core](https://dotnetcoretutorials.com/2019/01/13/hosted-services-in-asp-net-core).
 - Glenn Condron: [Community Standup - Takes Workers Everywhere](https://www.youtube.com/watch?v=5AEqA035o5I&feature=youtu.be&t=1709) + Docker example.
