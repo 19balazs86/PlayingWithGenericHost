@@ -29,6 +29,7 @@ This console application is an example of using the `GenericHost` as known `Work
 - Blog posts from *Andrew Lock*:
   - [Creating a Quartz.NET hosted service](https://andrewlock.net/creating-a-quartz-net-hosted-service-with-asp-net-core/).
   - [Using scoped services inside a Quartz.NET hosted service](https://andrewlock.net/using-scoped-services-inside-a-quartz-net-hosted-service-with-asp-net-core/).
+  - [Introducing IHostLifetime and untangling the Generic Host startup interactions](https://andrewlock.net/introducing-ihostlifetime-and-untangling-the-generic-host-startup-interactions/) *(ASP.NET Core 3.0)*.
 - [System.Threading.Channels](https://docs.microsoft.com/en-us/dotnet/api/system.threading.channels?view=dotnet-plat-ext-3.0)
   - [Introduction to System.Threading.Channels](https://www.stevejgordon.co.uk/an-introduction-to-system-threading-channels) *(Steve Gordon)*
   - [Exploring System.Threading.Channels](https://ndportmann.com/system-threading-channels/) *(Nicolas Portmann)*
