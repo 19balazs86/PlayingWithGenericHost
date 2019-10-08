@@ -33,6 +33,7 @@ This console application is an example of using the `GenericHost` as known `Work
 - [System.Threading.Channels](https://docs.microsoft.com/en-us/dotnet/api/system.threading.channels?view=dotnet-plat-ext-3.0)
   - [Introduction to System.Threading.Channels](https://www.stevejgordon.co.uk/an-introduction-to-system-threading-channels) *(Steve Gordon)*
   - [Exploring System.Threading.Channels](https://ndportmann.com/system-threading-channels/) *(Nicolas Portmann)*
+- systemd for Linux: [Scott Hanselman post](https://www.hanselman.com/blog/dotnetNewWorkerWindowsServicesOrLinuxSystemdServicesInNETCore.aspx) | [Nuget package](https://www.nuget.org/packages/Microsoft.Extensions.Hosting.Systemd/)
 
 ##### Off-topic
 - [Blog post](https://medium.com/cheranga/creating-and-scheduling-a-windows-service-using-topshelf-and-quartz-in-net-core-aae68b8390c) about creating and scheduling a windows service using [TopShelf](http://topshelf-project.com/) and Quartz in .NET Core.

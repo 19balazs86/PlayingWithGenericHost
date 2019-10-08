@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -31,7 +32,8 @@ namespace PlayingWithGenericHost
 
       bool isService = !(Debugger.IsAttached || args.Contains("--console"));
 
-      if (isService) hostBuilder.UseWindowsService();
+      if (isService && RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        hostBuilder.UseWindowsService();
 
       try
       {
