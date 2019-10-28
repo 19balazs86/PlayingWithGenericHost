@@ -4,7 +4,7 @@
       "commandName": "Project",
       "commandLineArgs": "--console",
       "environmentVariables": {
-        "environment": "Development"
+        "DOTNET_ENVIRONMENT": "Development"
       }
     }
   }

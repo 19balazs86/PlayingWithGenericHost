@@ -95,20 +95,26 @@ namespace PlayingWithGenericHost
 
     private static void configureAppConfiguration(HostBuilderContext hostContext, IConfigurationBuilder configBuilder)
     {
-      configBuilder.AddJsonFile("appsettings.json", optional: true);
-      configBuilder.AddJsonFile($"appsettings.{hostContext.HostingEnvironment.EnvironmentName}.json", optional: true);
+      // CreateDefaultBuilder method do the configuration.
+
+      //configBuilder.AddJsonFile("appsettings.json", optional: true);
+      //configBuilder.AddJsonFile($"appsettings.{hostContext.HostingEnvironment.EnvironmentName}.json", optional: true);
       //configBuilder.AddEnvironmentVariables();
       //configBuilder.AddCommandLine(args.Where(arg => arg != "--console").ToArray());
     }
 
     private static void configureHostConfiguration(IConfigurationBuilder configBuilder)
     {
+      // CreateDefaultBuilder method do the configuration.
+
       //if (args != null)
       //  configBuilder.AddCommandLine(args);
     }
 
     private static void configureLogging(HostBuilderContext hostContext, ILoggingBuilder logging)
     {
+      // CreateDefaultBuilder method do the configuration.
+
       //logging.AddConfiguration(hostContext.Configuration.GetSection("Logging"));
       //logging.AddConsole();
       //logging.AddDebug();
