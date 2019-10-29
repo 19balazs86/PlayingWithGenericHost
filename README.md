@@ -16,6 +16,7 @@ This console application is an example of using the `GenericHost` as known `Work
 - FileWriterService: a simple example of using `IHostedService` and a Timer in it.
 - `Quartz`: using the Quartz.NET to create background process timing with cron expression.
 - `System.Threading.Channels`: leverage this library to create a bounded channel/in-memory queue. Using IAsyncEnumerable.
+- Azure Application Insights for WorkerService [example in my repository](https://github.com/19balazs86/AzureAppInsights).
 
 #### Resources
 - TutorialDocs: [Background Tasks based on Generic Host in .NET Core](https://www.tutorialdocs.com/article/dotnet-generic-host.html), you can find a detailed explanation of how to write background tasks, which is running all the time or just running periodically (Threading.Timer, [Quartz Scheduler](https://www.quartz-scheduler.net/), or using [Hangfire](https://www.hangfire.io)).
