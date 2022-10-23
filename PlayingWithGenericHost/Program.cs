@@ -1,12 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.Linq;
-using System.Runtime.InteropServices;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using PlayingWithGenericHost.Quartz;
+﻿using PlayingWithGenericHost.Quartz;
 using PlayingWithGenericHost.Service;
 using PlayingWithGenericHost.ThreadingChannels;
 using Quartz;
@@ -14,6 +6,8 @@ using Quartz.Impl;
 using Quartz.Spi;
 using Serilog;
 using Serilog.Events;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace PlayingWithGenericHost
 {
@@ -66,7 +60,8 @@ namespace PlayingWithGenericHost
 
       // --> Add: HostedService.
       // !! Stopping in reverse order of adding.
-      services.AddHostedService<FileWriterService>();
+      services.AddHostedService<PeriodicTimerService>();
+      //services.AddHostedService<FileWriterService>();
       //services.AddHostedService<PrinterService>(); // UsePrinterService()
 
       // --> Install-Package Microsoft.Extensions.Http
