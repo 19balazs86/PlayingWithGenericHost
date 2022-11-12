@@ -1,8 +1,8 @@
 ﻿using Serilog;
 
-namespace PlayingWithGenericHost.Service
+namespace PlayingWithGenericHost.PeriodicTimerWithCronExpression
 {
-    public class PeriodicTimerService : BackgroundService
+    public class PeriodicTimerHeartbeatService : BackgroundService
     {
         // This is a better way for timing than the old System.Threading.Timer
         // Nick Chapsas: https://www.youtube.com/watch?v=J4JL4zR_l-0
