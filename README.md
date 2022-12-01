@@ -34,6 +34,7 @@ This console application is an example of using the `GenericHost` as known `Work
 - [System.Threading.Channels](https://docs.microsoft.com/en-us/dotnet/api/system.threading.channels?view=dotnet-plat-ext-3.0)
   - [Introduction to System.Threading.Channels](https://www.stevejgordon.co.uk/an-introduction-to-system-threading-channels) *(Steve Gordon)*
   - [Exploring System.Threading.Channels](https://ndportmann.com/system-threading-channels/) *(Nicolas Portmann)*
+  - [Producer-Consumer application with Channels](https://code-maze.com/dotnet-producer-consumer-channels/) *(Code-Maze)*
 - systemd for Linux: [Scott Hanselman post](https://www.hanselman.com/blog/dotnetNewWorkerWindowsServicesOrLinuxSystemdServicesInNETCore.aspx) | [Nuget package](https://www.nuget.org/packages/Microsoft.Extensions.Hosting.Systemd/)
 
 ##### Off-topic
