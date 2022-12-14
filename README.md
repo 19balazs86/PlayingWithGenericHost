@@ -16,8 +16,9 @@ This console application is an example of using the `GenericHost` as known `Work
 - FileWriterService: a simple example of using `IHostedService` and a Timer in it.
 - `Quartz`: using the [Quartz-scheduler / Quartz.NET](https://www.quartz-scheduler.net/) to create background process timing with cron expression.
 - `System.Threading.Channels`: leverage this library to create a bounded channel/in-memory queue. Using IAsyncEnumerable.
+- Example of using [PeriodicTimer](https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer). [YouTube video](https://www.youtube.com/watch?v=J4JL4zR_l-0) *(Nick Chapsas)*
 - Azure Application Insights for WorkerService [example in my repository](https://github.com/19balazs86/AzureAppInsights).
-- Using [Hangfire](https://www.hangfire.io) [in my repository](https://github.com/19balazs86/PlayingWithHangfire).
+- [Hangfire](https://www.hangfire.io) example [in my repository](https://github.com/19balazs86/PlayingWithHangfire).
 
 #### Resources
 - Microsoft:

@@ -4,7 +4,7 @@ namespace PlayingWithGenericHost.PeriodicTimerWithCronExpression
 {
     public abstract class CronBackgroundJobBase : BackgroundService
     {
-        private PeriodicTimer? _timer;
+        private PeriodicTimer _timer;
 
         private readonly CronExpression _cronExpression;
 

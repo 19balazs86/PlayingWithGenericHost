@@ -1,21 +1,19 @@
-﻿using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using Quartz;
+﻿using Quartz;
 
 namespace PlayingWithGenericHost.Quartz
 {
-  [DisallowConcurrentExecution]
-  public class HelloWorldJob : IJob
-  {
-    private readonly ILogger<HelloWorldJob> _logger;
-
-    public HelloWorldJob(ILogger<HelloWorldJob> logger) => _logger = logger;
-
-    public Task Execute(IJobExecutionContext context)
+    [DisallowConcurrentExecution]
+    public class HelloWorldJob : IJob
     {
-      _logger.LogInformation("Hello world job!");
+        private readonly ILogger<HelloWorldJob> _logger;
 
-      return Task.CompletedTask;
+        public HelloWorldJob(ILogger<HelloWorldJob> logger) => _logger = logger;
+
+        public Task Execute(IJobExecutionContext context)
+        {
+            _logger.LogInformation("Hello world job!");
+
+            return Task.CompletedTask;
+        }
     }
-  }
 }

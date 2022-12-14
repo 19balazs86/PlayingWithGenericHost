@@ -3,8 +3,6 @@ using PlayingWithGenericHost.Quartz;
 using PlayingWithGenericHost.Service;
 using PlayingWithGenericHost.ThreadingChannels;
 using Quartz;
-using Quartz.Impl;
-using Quartz.Spi;
 using Serilog;
 using Serilog.Events;
 using System.Diagnostics;
@@ -68,23 +66,27 @@ namespace PlayingWithGenericHost
             //services.AddHttpClient(...);
 
             #region Quartz
-            // --> Add Quartz services
-            services.AddHostedService<QuartzHostedService>();
 
-            services.AddSingleton<IJobFactory, QuartzJobFactory>();
-            services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();
+            services.AddQuartz(configure =>
+            {
+                configure.UseMicrosoftDependencyInjectionJobFactory();
 
-            // --> Add Quartz jobs
-            services.AddSingleton<QuartzJobRunner>();
+                configure.ScheduleCronJob<HelloWorldJob>("*/5 * * * * ?"); // Run every 5 seconds
+            });
+
+            services.AddQuartzHostedService(configure => configure.WaitForJobsToComplete = true);
+
             services.AddSingleton<HelloWorldJob>();
-            services.AddSingleton<IJobSchedule>(new JobSchedule<HelloWorldJob>("*/5 * * * * ?")); // Run every 5 seconds
+
             #endregion
 
             #region ThreadingChannels
+
             services.AddSingleton<MessageChannel>();
             services.AddHostedService<ChannelReaderService>();
             services.AddHostedService<ChannelWriterService>();
             // !!Stopping in reverse order of adding. We should stop the writer first.
+
             #endregion
 
             #region PeriodicTimerWithCronExpression
