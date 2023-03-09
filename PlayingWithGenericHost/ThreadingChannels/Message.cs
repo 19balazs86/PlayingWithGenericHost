@@ -1,7 +1,6 @@
-﻿namespace PlayingWithGenericHost.ThreadingChannels
+﻿namespace PlayingWithGenericHost.ThreadingChannels;
+
+public sealed class Message
 {
-  public class Message
-  {
-    public int Id { get; set; }
-  }
+    public int Id { get; init; }
 }
