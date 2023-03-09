@@ -1,19 +1,18 @@
 ﻿using Serilog;
 
-namespace PlayingWithGenericHost.PeriodicTimerWithCronExpression
+namespace PlayingWithGenericHost.PeriodicTimerWithCronExpression;
+
+public sealed class MySchedulerJob : CronBackgroundJobBase
 {
-    public class MySchedulerJob : CronBackgroundJobBase
+    public MySchedulerJob(CronSettings<MySchedulerJob> settings) : base(settings.CronExpression, settings.TimeZone)
     {
-        public MySchedulerJob(CronSettings<MySchedulerJob> settings) : base(settings.CronExpression, settings.TimeZone)
-        {
 
-        }
+    }
 
-        protected override async Task DoWork(CancellationToken stoppingToken)
-        {
-            Log.Information("Cron-MySchedulerJob Running... at {now}", DateTime.Now.ToString("HH:mm:ss:ff"));
+    protected override async Task DoWork(CancellationToken stoppingToken)
+    {
+        Log.Information("Cron-MySchedulerJob Running... at {now}", DateTime.Now.ToString("HH:mm:ss:ff"));
 
-            await Task.Delay(500);
-        }
+        await Task.Delay(500);
     }
 }

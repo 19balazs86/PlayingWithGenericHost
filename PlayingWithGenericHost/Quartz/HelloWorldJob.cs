@@ -1,19 +1,18 @@
 ﻿using Quartz;
 
-namespace PlayingWithGenericHost.Quartz
+namespace PlayingWithGenericHost.Quartz;
+
+[DisallowConcurrentExecution]
+public sealed class HelloWorldJob : IJob
 {
-    [DisallowConcurrentExecution]
-    public class HelloWorldJob : IJob
+    private readonly ILogger<HelloWorldJob> _logger;
+
+    public HelloWorldJob(ILogger<HelloWorldJob> logger) => _logger = logger;
+
+    public Task Execute(IJobExecutionContext context)
     {
-        private readonly ILogger<HelloWorldJob> _logger;
+        _logger.LogInformation("Hello world job!");
 
-        public HelloWorldJob(ILogger<HelloWorldJob> logger) => _logger = logger;
-
-        public Task Execute(IJobExecutionContext context)
-        {
-            _logger.LogInformation("Hello world job!");
-
-            return Task.CompletedTask;
-        }
+        return Task.CompletedTask;
     }
 }

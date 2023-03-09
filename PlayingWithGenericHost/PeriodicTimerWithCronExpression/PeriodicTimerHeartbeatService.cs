@@ -1,27 +1,26 @@
 ﻿using Serilog;
 
-namespace PlayingWithGenericHost.PeriodicTimerWithCronExpression
+namespace PlayingWithGenericHost.PeriodicTimerWithCronExpression;
+
+public sealed class PeriodicTimerHeartbeatService : BackgroundService
 {
-    public class PeriodicTimerHeartbeatService : BackgroundService
+    // This is a better way for timing than the old System.Threading.Timer
+    // Nick Chapsas: https://www.youtube.com/watch?v=J4JL4zR_l-0
+
+    private readonly PeriodicTimer _timer = new PeriodicTimer(TimeSpan.FromMilliseconds(1_000));
+
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        // This is a better way for timing than the old System.Threading.Timer
-        // Nick Chapsas: https://www.youtube.com/watch?v=J4JL4zR_l-0
-
-        private readonly PeriodicTimer _timer = new PeriodicTimer(TimeSpan.FromMilliseconds(1_000));
-
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        while (await _timer.WaitForNextTickAsync(stoppingToken) && !stoppingToken.IsCancellationRequested)
         {
-            while (await _timer.WaitForNextTickAsync(stoppingToken) && !stoppingToken.IsCancellationRequested)
-            {
-                await doWork();
-            }
+            await doWork();
         }
+    }
 
-        private static async Task doWork()
-        {
-            Log.Information("PeriodicTimer: {now}", DateTime.Now.ToString("HH:mm:ss:ff"));
+    private static async Task doWork()
+    {
+        Log.Information("PeriodicTimer: {now}", DateTime.Now.ToString("HH:mm:ss:ff"));
 
-            await Task.Delay(500);
-        }
+        await Task.Delay(500);
     }
 }

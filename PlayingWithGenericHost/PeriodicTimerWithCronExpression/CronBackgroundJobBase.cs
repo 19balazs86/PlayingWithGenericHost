@@ -1,45 +1,44 @@
 ﻿using Quartz;
 
-namespace PlayingWithGenericHost.PeriodicTimerWithCronExpression
+namespace PlayingWithGenericHost.PeriodicTimerWithCronExpression;
+
+public abstract class CronBackgroundJobBase : BackgroundService
 {
-    public abstract class CronBackgroundJobBase : BackgroundService
+    private PeriodicTimer _timer;
+
+    private readonly CronExpression _cronExpression;
+
+    public CronBackgroundJobBase(string rawCronExpression, TimeZoneInfo timeZone)
     {
-        private PeriodicTimer _timer;
+        if (!CronExpression.IsValidExpression(rawCronExpression))
+            throw new InvalidOperationException($"Invalid CronExpression: '{rawCronExpression}'.");
 
-        private readonly CronExpression _cronExpression;
+        _cronExpression = new CronExpression(rawCronExpression) { TimeZone = timeZone };
+    }
 
-        public CronBackgroundJobBase(string rawCronExpression, TimeZoneInfo timeZone)
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    {
+        DateTimeOffset? nextOcurrence = _cronExpression.GetNextValidTimeAfter(DateTime.UtcNow);
+
+        if (nextOcurrence.HasValue)
         {
-            if (!CronExpression.IsValidExpression(rawCronExpression))
-                throw new InvalidOperationException($"Invalid CronExpression: '{rawCronExpression}'.");
 
-            _cronExpression = new CronExpression(rawCronExpression) { TimeZone = timeZone };
-        }
+            TimeSpan delay = nextOcurrence.Value - DateTimeOffset.UtcNow;
 
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-        {
-            DateTimeOffset? nextOcurrence = _cronExpression.GetNextValidTimeAfter(DateTime.UtcNow);
+            _timer = new PeriodicTimer(delay);
 
-            if (nextOcurrence.HasValue)
+            if (await _timer.WaitForNextTickAsync(stoppingToken))
             {
+                _timer.Dispose();
+                _timer = null;
 
-                TimeSpan delay = nextOcurrence.Value - DateTimeOffset.UtcNow;
+                await DoWork(stoppingToken);
 
-                _timer = new PeriodicTimer(delay);
-
-                if (await _timer.WaitForNextTickAsync(stoppingToken))
-                {
-                    _timer.Dispose();
-                    _timer = null;
-
-                    await DoWork(stoppingToken);
-
-                    // Reschedule
-                    await ExecuteAsync(stoppingToken);
-                }
+                // Reschedule
+                await ExecuteAsync(stoppingToken);
             }
         }
-
-        protected abstract Task DoWork(CancellationToken stoppingToken);
     }
+
+    protected abstract Task DoWork(CancellationToken stoppingToken);
 }

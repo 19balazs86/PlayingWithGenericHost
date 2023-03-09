@@ -1,35 +1,30 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Hosting;
-using Serilog;
+﻿using Serilog;
 
-namespace PlayingWithGenericHost.Service
+namespace PlayingWithGenericHost.Service;
+
+public sealed class PrinterService : BackgroundService
 {
-  public class PrinterService : BackgroundService
-  {
     public override Task StartAsync(CancellationToken cancellationToken)
     {
-      Log.Information("Printer is started.");
+        Log.Information("Printer is started.");
 
-      return base.StartAsync(cancellationToken);
+        return base.StartAsync(cancellationToken);
     }
 
     public override Task StopAsync(CancellationToken cancellationToken)
     {
-      Log.Information("Printer is stopped.");
+        Log.Information("Printer is stopped.");
 
-      return base.StopAsync(cancellationToken);
+        return base.StopAsync(cancellationToken);
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-      while (!stoppingToken.IsCancellationRequested)
-      {
-        Log.Information($"Printer is working.");
+        while (!stoppingToken.IsCancellationRequested)
+        {
+            Log.Information($"Printer is working.");
 
-        await Task.Delay(TimeSpan.FromSeconds(5), stoppingToken);
-      }
+            await Task.Delay(TimeSpan.FromSeconds(5), stoppingToken);
+        }
     }
-  }
 }
