@@ -1,4 +1,5 @@
-﻿using PlayingWithGenericHost.PeriodicTimerWithCronExpression;
+﻿using PlayingWithGenericHost.DataflowTPL;
+using PlayingWithGenericHost.PeriodicTimerWithCronExpression;
 using PlayingWithGenericHost.Quartz;
 using PlayingWithGenericHost.Service;
 using PlayingWithGenericHost.ThreadingChannels;
@@ -49,6 +50,8 @@ public static class Program
         // --> Install-Package Microsoft.Extensions.Http
         //services.AddHttpClient(...);
 
+        // You can try the services 1 by 1
+
         //services.AddHostedService<PrinterService>(); // UsePrinterService()
 
         //services.addFileWriterService(configuration);
@@ -58,6 +61,8 @@ public static class Program
         services.addChannelServices();
 
         services.addPeriodicTimerServices();
+
+        services.addDataflowServices();
     }
 
     private static void addQuartzServices(this IServiceCollection services)
@@ -92,6 +97,13 @@ public static class Program
             options.CronExpression = "*/5 * * * * ?"; // Run every 5 seconds
             options.TimeZone       = TimeZoneInfo.Local;
         });
+    }
+
+    private static void addDataflowServices(this IServiceCollection services)
+    {
+        services.AddSingleton<BufferBlockSource>();
+        services.AddHostedService<BufferBlockConsumerService>();
+        services.AddHostedService<BufferBlockProducerService>();
     }
 
     private static void addFileWriterService(this IServiceCollection services, IConfiguration configuration)
