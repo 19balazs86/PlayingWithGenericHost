@@ -31,6 +31,7 @@ This console application demonstrates the use of `GenericHost` as known `WorkerS
   - [Background tasks with hosted services](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/host/hosted-services)
   - [Host ASP.NET Core in a Windows Service](https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/windows-service)
 - [Schedule Jobs with Quartz.NET](https://code-maze.com/schedule-jobs-with-quartz-net) 📓*Code-Maze*
+- [Too many timers in .NET](https://www.meziantou.net/too-many-timers-in-dotnet.htm) 📓*Meziantou - Gérald Barré*
 - 📓 *Andrew Lock*
   - [Creating a Quartz.NET hosted service](https://andrewlock.net/creating-a-quartz-net-hosted-service-with-asp-net-core)
   - [Using scoped services inside a Quartz.NET hosted service](https://andrewlock.net/using-scoped-services-inside-a-quartz-net-hosted-service-with-asp-net-core)
