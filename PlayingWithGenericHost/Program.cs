@@ -77,6 +77,9 @@ public static class Program
         services.AddQuartzHostedService(configure => configure.WaitForJobsToComplete = true);
 
         services.AddSingleton<HelloWorldJob>();
+        
+        // Production, consider using a different JobStores than the default RAMJobStore
+        // https://www.quartz-scheduler.net/documentation/quartz-3.x/quick-start.html
     }
 
     private static void addChannelServices(this IServiceCollection services)
