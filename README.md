@@ -30,6 +30,7 @@ You can find a few examples of running background jobs in different ways.
   - [.NET Generic Host](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/host/generic-host)
   - [Background tasks with hosted services](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/host/hosted-services)
   - [Host ASP.NET Core in a Windows Service](https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/windows-service)
+- [IHostedLifecycleService interface in .NET 8](https://www.stevejgordon.co.uk/introducing-the-new-ihostedlifecycleservice-interface-in-dotnet-8) 📓*Steve Gordon*
 - [Schedule Jobs with Quartz.NET](https://code-maze.com/schedule-jobs-with-quartz-net) 📓*Code-Maze*
 - [Scheduling background tasks with Quartz](https://youtu.be/iD3jrj3RBuc) 📽️*11min-Milan (nice solution by using IConfigureOptions)*
 - [Too many timers in .NET](https://www.meziantou.net/too-many-timers-in-dotnet.htm) 📓*Meziantou - Gérald Barré*
