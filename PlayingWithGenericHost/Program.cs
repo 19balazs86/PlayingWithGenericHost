@@ -67,17 +67,12 @@ public static class Program
 
     private static void addQuartzServices(this IServiceCollection services)
     {
-        services.AddQuartz(configure =>
-        {
-            configure.UseMicrosoftDependencyInjectionJobFactory();
-
-            configure.ScheduleCronJob<HelloWorldJob>("*/5 * * * * ?"); // Run every 5 seconds
-        });
+        services.AddQuartz(configure => configure.ScheduleCronJob<HelloWorldJob>("*/5 * * * * ?")); // Run every 5 seconds
 
         services.AddQuartzHostedService(configure => configure.WaitForJobsToComplete = true);
 
         services.AddSingleton<HelloWorldJob>();
-        
+
         // Production, consider using a different JobStores than the default RAMJobStore
         // https://www.quartz-scheduler.net/documentation/quartz-3.x/quick-start.html
     }
