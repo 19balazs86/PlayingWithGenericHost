@@ -48,5 +48,5 @@ You can find a few examples of running background jobs in different ways.
   - [Task Parallel Library (TPL)](https://learn.microsoft.com/en-us/dotnet/standard/parallel-programming/task-parallel-library-tpl) 📚*Microsoft-Learn*
   - [Implement a producer-consumer dataflow pattern](https://learn.microsoft.com/en-us/dotnet/standard/parallel-programming/how-to-implement-a-producer-consumer-dataflow-pattern) 📚*Microsoft-Learn*
 - [Coravel](https://docs.coravel.net) *(Task Scheduling, Caching, Queuing, Event Broadcasting)*
+  - [Easiest scheduling with Coravel](https://youtu.be/73Q5EabiEHM) 📽️*11 min - NickChapsas*
   - [Scheduled job with Worker Service](https://dev.to/jamesmh/building-a-net-core-scheduled-job-worker-service-376h) 📓*James Hickey*
-
