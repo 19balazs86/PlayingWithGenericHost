@@ -44,8 +44,14 @@ public static class Program
     {
         IConfiguration configuration = hostContext.Configuration;
 
-        // Try to drain the channel.
-        services.Configure<HostOptions>(option => option.ShutdownTimeout = TimeSpan.FromSeconds(15));
+        services.Configure<HostOptions>(option =>
+        {
+            option.ShutdownTimeout = TimeSpan.FromSeconds(15); // Try to drain the channel
+
+            // Handle background services concurrently
+            option.ServicesStartConcurrently = true;
+            option.ServicesStopConcurrently  = true;
+        });
 
         // --> Install-Package Microsoft.Extensions.Http
         //services.AddHttpClient(...);
