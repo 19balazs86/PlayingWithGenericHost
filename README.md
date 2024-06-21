@@ -6,7 +6,7 @@ You can find a few examples of running background jobs in different ways.
 #### What is the HostBulder?
 
 - `HostBuilder` is a lightweight version of the `WebHostBuilder` and it does not process HTTP requests.
-- `HostBuilder` similarly like the `WebHostBuilder`, allows to configure services, using [dependency injection](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/dependency-injection), [HttpClientFactory](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/http-requests), [logging](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/logging) + [Serilog](https://github.com/serilog/serilog-extensions-hosting) and so on.
+- `HostBuilder` similarly like the `WebHostBuilder`, allows to configure services, using [dependency injection](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/dependency-injection), [HttpClientFactory](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/http-requests), [logging](https://docs.microsoft.com/en-ie/aspnet/core/fundamentals/logging) and so on.
 
 #### Run this application as a Windows Service
 
@@ -47,6 +47,10 @@ You can find a few examples of running background jobs in different ways.
   - [Implementing the producer-consumer pattern with TPL Dataflow](https://markheath.net/post/producer-consumer-pattern-tpl) 📓*Mark Heath*
   - [Task Parallel Library (TPL)](https://learn.microsoft.com/en-us/dotnet/standard/parallel-programming/task-parallel-library-tpl) 📚*Microsoft-Learn*
   - [Implement a producer-consumer dataflow pattern](https://learn.microsoft.com/en-us/dotnet/standard/parallel-programming/how-to-implement-a-producer-consumer-dataflow-pattern) 📚*Microsoft-Learn*
-- [Coravel](https://docs.coravel.net) *(Task Scheduling, Caching, Queuing, Event Broadcasting)*
+- Coravel *(Task Scheduling, Caching, Queuing, Event Broadcasting)*
+  - [Documentation](https://docs.coravel.net)
   - [Easiest scheduling with Coravel](https://youtu.be/73Q5EabiEHM) 📽️*11 min - NickChapsas*
   - [Scheduled job with Worker Service](https://dev.to/jamesmh/building-a-net-core-scheduled-job-worker-service-376h) 📓*James Hickey*
+- NCronJob *(Easy to use job scheduler without database)*
+  - [Documentation](https://docs.ncronjob.dev)
+  - [Few update for NCronJob](https://steven-giesel.com/blogPost/40647b2f-6efa-4bc2-a7ab-53df460dd6fe) 📓*Steven Giesel*
