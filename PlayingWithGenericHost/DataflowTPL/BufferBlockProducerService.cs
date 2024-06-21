@@ -4,10 +4,13 @@ namespace PlayingWithGenericHost.DataflowTPL;
 
 public sealed class BufferBlockProducerService : BackgroundService
 {
+    private readonly ILogger<BufferBlockProducerService> _logger;
+
     private readonly ITargetBlock<string> _producer;
 
-    public BufferBlockProducerService(BufferBlockSource bufferBlockSource)
+    public BufferBlockProducerService(ILogger<BufferBlockProducerService> logger, BufferBlockSource bufferBlockSource)
     {
+        _logger   = logger;
         _producer = bufferBlockSource.GetProducer();
     }
 
@@ -17,7 +20,7 @@ public sealed class BufferBlockProducerService : BackgroundService
         {
             string item = $"Item {i}";
 
-            Console.WriteLine($"Producing {item}");
+            _logger.LogInformation("Producing '{Item}'", item);
 
             await Task.Delay(500); // Simulate some work to produce an item
 
@@ -25,12 +28,12 @@ public sealed class BufferBlockProducerService : BackgroundService
             {
                 await _producer.SendAsync(item, stoppingToken);
 
-                Console.WriteLine($"Produced {item}");
+                _logger.LogInformation("Produced '{Item}'", item);
             }
             catch (OperationCanceledException) { }
         }
 
-        Console.WriteLine("BufferBlock.Complete()");
+        _logger.LogInformation("BufferBlock.Complete()");
 
         _producer.Complete();
 

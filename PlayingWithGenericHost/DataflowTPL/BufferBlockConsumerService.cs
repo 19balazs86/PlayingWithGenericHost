@@ -4,10 +4,14 @@ namespace PlayingWithGenericHost.DataflowTPL;
 
 public sealed class BufferBlockConsumerService : BackgroundService
 {
+    private readonly ILogger<BufferBlockConsumerService> _logger;
+
     private readonly ActionBlock<string> _consumerBlock;
 
-    public BufferBlockConsumerService(BufferBlockSource bufferBlockSource)
+    public BufferBlockConsumerService(ILogger<BufferBlockConsumerService> logger, BufferBlockSource bufferBlockSource)
     {
+        _logger = logger;
+
         var options = new ExecutionDataflowBlockOptions { MaxDegreeOfParallelism = BufferBlockSource.MaxParallelConsume };
 
         _consumerBlock = new ActionBlock<string>(consumeItem, options);
@@ -27,10 +31,10 @@ public sealed class BufferBlockConsumerService : BackgroundService
 
     private async Task consumeItem(string item)
     {
-        Console.WriteLine($"Consuming '{item}'");
+        _logger.LogInformation("Consuming '{Item}'", item);
 
         await Task.Delay(2_000);
 
-        Console.WriteLine($"Consumed '{item}'");
+        _logger.LogInformation("Consumed '{Item}'", item);
     }
 }
