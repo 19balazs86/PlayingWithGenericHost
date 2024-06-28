@@ -46,6 +46,8 @@ public static class Program
 
         services.Configure<HostOptions>(option =>
         {
+            option.BackgroundServiceExceptionBehavior = BackgroundServiceExceptionBehavior.StopHost; // The default value is StopHost. If an exception happens during the Execute method, you can Ignore/StopHost
+
             option.ShutdownTimeout = TimeSpan.FromSeconds(15); // Try to drain the channel
 
             // Handle background services concurrently
