@@ -26,6 +26,7 @@ public static class Program
 
         bool isService = !(Debugger.IsAttached || args.Contains("--console"));
 
+        // Code-Maze example: https://youtu.be/RcA-TLQfpp8
         if (isService && RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             hostBuilder.UseWindowsService();
 
