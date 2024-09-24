@@ -43,6 +43,8 @@ You can find a few examples of running background jobs in different ways.
   - [Introduction to System.Threading.Channels](https://www.stevejgordon.co.uk/an-introduction-to-system-threading-channels) 📓*Steve Gordon*
   - [Exploring System.Threading.Channels](https://ndportmann.com/system-threading-channels/) 📓*Nicolas Portmann*
   - [Producer-Consumer application with Channels](https://code-maze.com/dotnet-producer-consumer-channels/) 📓*Code-Maze*
+- System.IO.Pipelines
+  - [Serialize JSON objects through a Pipe](https://github.com/chaseaucoin/AsyncStreamDemo/blob/master/SimpleProtocol/Program.cs) 👤*Chase Q. Aucoin*
 - TPL Dataflow
   - [Implementing the producer-consumer pattern with TPL Dataflow](https://markheath.net/post/producer-consumer-pattern-tpl) 📓*Mark Heath*
   - [Task Parallel Library (TPL)](https://learn.microsoft.com/en-us/dotnet/standard/parallel-programming/task-parallel-library-tpl) 📚*Microsoft-Learn*

@@ -1,5 +1,6 @@
 ﻿using PlayingWithGenericHost.DataflowTPL;
 using PlayingWithGenericHost.PeriodicTimerWithCronExpression;
+using PlayingWithGenericHost.PipelinesSystemIO;
 using PlayingWithGenericHost.Quartz;
 using PlayingWithGenericHost.Service;
 using PlayingWithGenericHost.ThreadingChannels;
@@ -72,6 +73,8 @@ public static class Program
         services.addPeriodicTimerServices();
 
         services.addDataflowServices();
+
+        services.addPipelineServices();
     }
 
     private static void addQuartzServices(this IServiceCollection services)
@@ -92,6 +95,13 @@ public static class Program
         services.AddHostedService<ChannelReaderService>();
         services.AddHostedService<ChannelWriterService>();
         // !!Stopping in reverse order of adding. We should stop the writer first.
+    }
+
+    private static void addPipelineServices(this IServiceCollection services)
+    {
+        services.AddSingleton<MessagePipe>();
+        services.AddHostedService<PipeReaderService>();
+        services.AddHostedService<PipeWriterService>();
     }
 
     private static void addPeriodicTimerServices(this IServiceCollection services)
