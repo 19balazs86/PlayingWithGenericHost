@@ -3,32 +3,35 @@ using System.Threading.Channels;
 
 namespace PlayingWithGenericHost.ThreadingChannels;
 
-public sealed class ChannelReaderService : BackgroundService
+public sealed class ChannelReaderService(MessageChannel _messageChannel) : BackgroundService
 {
-    private readonly ChannelReader<Message> _channelReader;
-
-    public ChannelReaderService(MessageChannel messageChannel)
-        => _channelReader = messageChannel.Reader;
+    private readonly ChannelReader<Message> _channelReader = _messageChannel.Reader;
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        // Not passing cancellation into the method so that we can drain the channel on shutdown.
-        await foreach (Message message in _channelReader.ReadAllAsync())
+        // We are not passing cancellation into the method to allow the channel to drain on shutdown
+        await foreach (Message message in _channelReader.ReadAllAsync(CancellationToken.None))
         {
-            await Task.Delay(300);
-
-            Log.Information($"Processed message: #{message.Id}.");
+            await processMessage(message, CancellationToken.None);
         }
 
-        // ReadAllAsync method was not exists before .NET Core 3.
-        //while (await _channelReader.WaitToReadAsync())
-        //{
-        //    while (_channelReader.TryRead(out Message message))
-        //    {
-        //        await Task.Delay(300);
+        // An easy way to process messages in parallel
+        // await Parallel.ForEachAsync(_channelReader.ReadAllAsync(CancellationToken.None), CancellationToken.None, processMessage);
 
-        //        Log.Information($"Processed message: '{message.Id}'.");
-        //    }
-        //}
+        // The ReadAllAsync method did not exist before .NET Core 3
+        // while (await _channelReader.WaitToReadAsync(CancellationToken.None))
+        // {
+        //     while (_channelReader.TryRead(out Message message))
+        //     {
+        //         await processItem(message, CancellationToken.None);
+        //     }
+        // }
+    }
+
+    private static async ValueTask processMessage(Message message, CancellationToken ct)
+    {
+        await Task.Delay(300, ct);
+
+        Log.Information($"Processed message: #{message.Id}.");
     }
 }
