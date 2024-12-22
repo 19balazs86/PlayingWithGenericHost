@@ -35,15 +35,16 @@
 #### `Miscellaneous`
 
 - [IHostedLifecycleService interface in .NET 8](https://www.stevejgordon.co.uk/introducing-the-new-ihostedlifecycleservice-interface-in-dotnet-8) 📓*Steve Gordon*
-- [Schedule Jobs with Quartz.NET](https://code-maze.com/schedule-jobs-with-quartz-net) 📓*Code-Maze*
-- [Scheduling background tasks with Quartz](https://youtu.be/iD3jrj3RBuc) 📽️*11min-Milan (nice solution by using IConfigureOptions)*
+- [Introducing IHostLifetime and untangling the Generic Host startup interactions](https://andrewlock.net/introducing-ihostlifetime-and-untangling-the-generic-host-startup-interactions) 📓*Andrew Lock*
 - [Too many timers in .NET](https://www.meziantou.net/too-many-timers-in-dotnet.htm) 📓*Meziantou - Gérald Barré*
 
-#### `Andrew Lock`
+#### `Quartz.NET`
 
-- [Creating a Quartz.NET hosted service](https://andrewlock.net/creating-a-quartz-net-hosted-service-with-asp-net-core)
-- [Using scoped services inside a Quartz.NET hosted service](https://andrewlock.net/using-scoped-services-inside-a-quartz-net-hosted-service-with-asp-net-core)
-- [Introducing IHostLifetime and untangling the Generic Host startup interactions](https://andrewlock.net/introducing-ihostlifetime-and-untangling-the-generic-host-startup-interactions)
+- [Scheduling background jobs with Quartz](https://youtu.be/iD3jrj3RBuc) 📽️*11min-Milan (nice solution by using IConfigureOptions)*
+- [Scheduling background jobs with Quartz](https://www.milanjovanovic.tech/blog/scheduling-background-jobs-with-quartz-in-dotnet-advanced-concepts) (advanced concepts) 📓*Milan's newsletter*
+- [Schedule Jobs with Quartz.NET](https://code-maze.com/schedule-jobs-with-quartz-net) 📓*Code-Maze*
+- [Creating a Quartz.NET hosted service](https://andrewlock.net/creating-a-quartz-net-hosted-service-with-asp-net-core) 📓*Andrew Lock*
+- [Using scoped services inside a Quartz.NET hosted service](https://andrewlock.net/using-scoped-services-inside-a-quartz-net-hosted-service-with-asp-net-core) 📓*Andrew Lock*
 
 #### `System Threading Channels`
 
