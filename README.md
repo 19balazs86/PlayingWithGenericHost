@@ -40,8 +40,9 @@
 
 #### `Quartz.NET`
 
-- [Scheduling background jobs with Quartz](https://youtu.be/iD3jrj3RBuc) 📽️*11min-Milan (nice solution by using IConfigureOptions)*
-- [Scheduling background jobs with Quartz](https://www.milanjovanovic.tech/blog/scheduling-background-jobs-with-quartz-in-dotnet-advanced-concepts) (advanced concepts) 📓*Milan's newsletter*
+- [Scheduling background jobs with Quartz](https://youtu.be/iD3jrj3RBuc) 📽️*11 min - Milan (nice solution by using IConfigureOptions)*
+- [Scheduling background jobs with Quartz](https://www.milanjovanovic.tech/blog/scheduling-background-jobs-with-quartz-in-dotnet-advanced-concepts) *(advanced concepts)* 📓*Milan's newsletter*
+- [Background jobs with Quartz](https://youtu.be/p6bZewonoM0) *(Persistence, OpenTelemetry)* 📽️*15 min - Milan*
 - [Schedule Jobs with Quartz.NET](https://code-maze.com/schedule-jobs-with-quartz-net) 📓*Code-Maze*
 - [Creating a Quartz.NET hosted service](https://andrewlock.net/creating-a-quartz-net-hosted-service-with-asp-net-core) 📓*Andrew Lock*
 - [Using scoped services inside a Quartz.NET hosted service](https://andrewlock.net/using-scoped-services-inside-a-quartz-net-hosted-service-with-asp-net-core) 📓*Andrew Lock*
